@@ -1,0 +1,8 @@
+@import './navigation.css'; 
+@import './dashboard.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+

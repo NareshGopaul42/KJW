@@ -1,0 +1,25 @@
+@layer components {
+    .dashboard-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+    }
+
+    .dashboard-content {
+        @apply bg-white rounded-lg shadow p-6;
+    }
+
+    .dashboard-grid {
+        @apply grid grid-cols-2 gap-6;
+    }
+
+    .dashboard-item {
+        @apply p-6 bg-yellow-100 rounded-lg hover:bg-yellow-200 transition;
+    }
+
+    .dashboard-item-title {
+        @apply text-xl font-semibold text-gray-900;
+    }
+
+    .dashboard-body {
+        @apply bg-gray-100;
+    }
+}

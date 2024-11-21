@@ -1,0 +1,53 @@
+
+
+
+        .nav-container {
+            @apply bg-white shadow-sm;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .nav-content {
+            @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+        }
+
+        .nav-flex-container {
+            @apply flex justify-between items-center h-16;
+        }
+
+        .logo-container {
+            @apply flex-shrink-0;
+        }
+
+        .logo {
+            @apply h-12 w-12;
+        }
+
+        .search-container {
+            @apply relative w-64;
+           
+        }
+
+        .search-input {
+            @apply w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none;
+            border-radius: 20px;
+        }
+
+        .search-button {
+            @apply absolute right-3 top-2;
+        }
+
+        .search-icon {
+            @apply h-5 w-5 text-gray-400;
+        }
+
+        .right-icons-container {
+            @apply flex items-center space-x-4;
+        }
+
+        .icon-button {
+            @apply p-2 rounded-lg hover:bg-gray-100;
+        }
+
+        .icon {
+            @apply h-6 w-6 text-gray-600;
+        }
