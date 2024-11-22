@@ -1,5 +1,6 @@
 @import './navigation.css'; 
 @import './dashboard.css';
+@import './inventory_view.css';
 
 @tailwind base;
 @tailwind components;

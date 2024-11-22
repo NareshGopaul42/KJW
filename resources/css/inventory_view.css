@@ -1,0 +1,295 @@
+@layer components {
+  /* Base Styles */
+    .body-inventory {
+        background-color: rgb(249, 250, 251);
+    }
+
+    .container-inventory {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+    }
+
+    /* Header Section */
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(31, 41, 55);
+    }
+
+    .button-group {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .button-icon {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+
+    /* Action Buttons */
+    .action-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        color: white;
+        transition: background-color 0.2s;
+    }
+
+    .add-material {
+        background-color: rgb(37, 99, 235);
+    }
+
+    .add-material:hover {
+        background-color: rgb(29, 78, 216);
+    }
+
+    .record-receipt {
+        background-color: rgb(22, 163, 74);
+    }
+
+    .record-receipt:hover {
+        background-color: rgb(21, 128, 61);
+    }
+
+    .record-usage {
+        background-color: rgb(147, 51, 234);
+    }
+
+    .record-usage:hover {
+        background-color: rgb(126, 34, 206);
+    }
+
+    /* Search Section */
+    .search-section {
+        background-color: rgb(251, 251, 251);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+    }
+    
+    .inventory-search-container {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        background-color: aquas;
+    }
+    
+    .inventory-search-input {
+        flex: 1;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.5rem;
+   
+    }
+    
+    .inventory-search-input:focus {
+        outline: none;
+        ring: 2px;
+        ring-color: rgb(59, 130, 246);
+    }
+    
+    .inventory-filter-select {
+        
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.5rem;
+    }
+   
+    
+
+    /* Alert Section */
+    .alert-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .alert-container {
+        background-color: rgb(254, 249, 195);
+        border-left: 4px solid rgb(251, 191, 36);
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .alert-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .alert-icon {
+        flex-shrink: 0;
+    }
+
+    .icon-warning {
+        height: 1.25rem;
+        width: 1.25rem;
+        color: rgb(251, 191, 36);
+    }
+
+    .alert-text {
+        margin-left: 0.75rem;
+        font-size: 0.875rem;
+        color: rgb(146, 64, 14);
+    }
+
+    /* Inventory Grid */
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .inventory-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .inventory-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Material Card */
+    .material-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .material-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: rgb(31, 41, 55);
+    }
+
+    .material-type {
+        color: rgb(107, 114, 128);
+        font-size: 0.875rem;
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+    }
+
+    .status-badge.in-stock {
+        background-color: rgb(220, 252, 231);
+        color: rgb(22, 101, 52);
+    }
+
+    .card-content {
+        margin-top: 1rem;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-label {
+        color: rgb(107, 114, 128);
+    }
+
+    .info-value {
+        font-weight: 600;
+    }
+
+    .card-actions {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgb(229, 231, 235);
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .action-button-secondary {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.375rem;
+    }
+
+    .action-button-secondary:hover {
+        background-color: rgb(249, 250, 251);
+    }
+
+    .action-button-primary {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        background-color: rgb(37, 99, 235);
+        color: white;
+        border-radius: 0.375rem;
+    }
+
+    .action-button-primary:hover {
+        background-color: rgb(29, 78, 216);
+    }
+
+    /* Pagination */
+    .pagination-section {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination-container {
+        display: inline-flex;
+        border-radius: 0.375rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .pagination-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem;
+        border: 1px solid rgb(209, 213, 219);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgb(107, 114, 128);
+    }
+
+    .pagination-link:hover {
+        background-color: rgb(249, 250, 251);
+    }
+
+    .pagination-number {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(209, 213, 219);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgb(17, 24, 39);
+    }
+
+    .pagination-number:hover {
+        background-color: rgb(249, 250, 251);
+    }
+
+}
