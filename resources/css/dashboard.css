@@ -1,25 +1,26 @@
 @layer components {
-    .dashboard-container {
-        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+    /* These styles can be added to your existing styles */
+    .stats-value {
+        @apply text-2xl font-bold text-gray-900;
     }
 
-    .dashboard-content {
-        @apply bg-white rounded-lg shadow p-6;
+    .stats-label {
+        @apply text-sm font-medium text-gray-500;
     }
 
-    .dashboard-grid {
-        @apply grid grid-cols-2 gap-6;
+    .stats-trend-up {
+        @apply text-sm text-green-600 ml-2;
     }
 
-    .dashboard-item {
-        @apply p-6 bg-yellow-100 rounded-lg hover:bg-yellow-200 transition;
+    .stats-trend-down {
+        @apply text-sm text-red-600 ml-2;
     }
 
-    .dashboard-item-title {
-        @apply text-xl font-semibold text-gray-900;
+    .feature-card {
+        @apply bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200;
     }
 
-    .dashboard-body {
-        @apply bg-gray-100;
+    .feature-icon {
+        @apply flex-shrink-0 h-6 w-6;
     }
 }

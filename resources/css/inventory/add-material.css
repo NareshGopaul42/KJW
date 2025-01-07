@@ -1,0 +1,123 @@
+/* General Layout */
+body {
+    background-color: #F8F9FA;
+    color: #2C3E50;
+}
+
+/* Header Bar */
+.header-bar {
+    background-color: #2C3E50;
+    padding: 1rem;
+}
+
+.header-bar a {
+    color: #4d9dff;
+    transition: color 0.2s;
+}
+
+.header-bar a:hover {
+    color: #555ae9;
+}
+
+/* Form Container */
+.form-container {
+    background: #fffffd;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Labels */
+label {
+    display: block;
+    color: #2C3E50;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: white;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+}
+
+/* Focus States */
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Number Input Spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Submit Button */
+.submit-button {
+    background-color: #D4AF37;
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #B8860B;
+}
+
+/* Error Messages */
+.error-container {
+    background-color: #FEE2E2;
+    border: 1px solid #F87171;
+    color: #B91C1C;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Select Dropdown */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .form-container {
+        padding: 1rem;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+        padding: 0.5rem;
+    }
+}

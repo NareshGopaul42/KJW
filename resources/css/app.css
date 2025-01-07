@@ -1,6 +1,10 @@
 @import './navigation.css'; 
 @import './dashboard.css';
 @import './inventory_view.css';
+@import 'inventory/add-material.css';
+@import 'inventory/record-receipt.css';
+@import 'inventory/record-usage.css';
+
 
 @tailwind base;
 @tailwind components;

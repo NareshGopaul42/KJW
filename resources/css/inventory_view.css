@@ -1,28 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
   /* Base Styles */
-    .body-inventory {
-        background-color: rgb(249, 250, 251);
-    }
+  .body-inventory {
+    background-color: #FAF9F6; /* Pearl White background */
+  }
 
-    .container-inventory {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 1.5rem 1rem;
-    }
+  .container-inventory {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
 
     /* Header Section */
     .header-section {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #2C3E50; /* Navy Blue background */
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
         margin-bottom: 1.5rem;
     }
 
-    .page-title {
+      .page-title {
         font-size: 1.5rem;
         font-weight: 600;
-        color: rgb(31, 41, 55);
-    }
+        color: #D4AF37; /* Metallic Gold */
+      }
 
     .button-group {
         display: flex;
@@ -42,24 +49,53 @@
         padding: 0.5rem 1rem;
         border-radius: 0.5rem;
         font-weight: 500;
-        color: white;
-        transition: background-color 0.2s;
+        color: #FAF9F6; /* Pearl White */
+        transition: all 0.2s;
+        border: 1px solid transparent;
+        background-color: #ae1ece; /* Green background */
     }
 
+    .action-button:hover {
+       background-color: #0baab8;
+    }
+
+
+    .action-button-secondary {
+    background-color: #555555; /* Charcoal Gray */
+    color: #FAF9F6; /* Pearl White */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    }
+
+    .action-button-secondary:hover {
+        background-color: #0baab8; /* Charcoal Gray */
+       
+        }
+    
+    .history-button {
+        margin-left: auto; /* Pushes the history button to the far right */
+    }
+
+    .history-button :hover{
+        background-color: #0baab8;
+    }
+
+
     .add-material {
-        background-color: rgb(37, 99, 235);
+        background-color: #D4AF37; /* Metallic Gold */
     }
 
     .add-material:hover {
-        background-color: rgb(29, 78, 216);
+        background-color: #B8860B; /* Rich Gold */
     }
 
     .record-receipt {
-        background-color: rgb(22, 163, 74);
+        background-color: #4169E1; /* Royal Blue */
     }
 
     .record-receipt:hover {
-        background-color: rgb(21, 128, 61);
+        background-color: #03b6b6; /* Navy Blue */
     }
 
     .record-usage {
@@ -96,19 +132,15 @@
     
     .inventory-search-input:focus {
         outline: none;
-        ring: 2px;
-        ring-color: rgb(59, 130, 246);
     }
     
     .inventory-filter-select {
-        
         padding: 0.5rem 1rem;
-        border: 1px solid rgb(209, 213, 219);
+        border: 1px solid #333333; /* Charcoal Gray */
         border-radius: 0.5rem;
-    }
+        background-color: #FAF9F6; /* Pearl White */
+      }
    
-    
-
     /* Alert Section */
     .alert-section {
         margin-bottom: 1.5rem;
@@ -144,10 +176,12 @@
 
     /* Inventory Grid */
     .inventory-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem; /* Reduced from 2rem */
+        background-color: #3f4f6e;
+        padding: 1rem;
+        border-radius: 0.5rem;
     }
 
     @media (min-width: 768px) {
@@ -162,93 +196,137 @@
         }
     }
 
-    /* Material Card */
-    .material-card {
-        background-color: white;
-        border-radius: 0.5rem;
-        padding: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    .material-section {
+        width: 100%;
+        background: rgb(227, 227, 227);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.25rem; /* Added small margin */
+        transition: transform 0.3s ease-in-out;
     }
-
-    .card-header {
+    
+    .carousel-wrapper {
+        position: relative;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
     }
+    
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 1rem 0;
+        gap: 1rem;
+        width: 100%;
+    }
+    
 
+    
     .material-title {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: rgb(31, 41, 55);
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
     }
-
+    
     .material-type {
-        color: rgb(107, 114, 128);
+        color: #6b7280;
+        text-align: center;
         font-size: 0.875rem;
+        margin-bottom: 0.5rem;
     }
-
-    .status-badge {
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-    }
-
-    .status-badge.in-stock {
-        background-color: rgb(220, 252, 231);
-        color: rgb(22, 101, 52);
-    }
-
-    .card-content {
-        margin-top: 1rem;
-    }
-
+    
     .info-row {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.5rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e5e7eb;
     }
-
+    
     .info-label {
-        color: rgb(107, 114, 128);
+        font-size: 0.875rem;
+        color: #6b7280;
     }
-
+    
     .info-value {
+        font-size: 0.875rem;
         font-weight: 600;
     }
-
+    
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .status-badge.in-stock {
+    background-color: #50C878; /* Emerald Green */
+    color: #FAF9F6; /* Pearl White */
+  }
+    
     .card-actions {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgb(229, 231, 235);
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 0.5rem;
     }
 
-    .action-button-secondary {
-        padding: 0.25rem 0.75rem;
-        font-size: 0.875rem;
-        border: 1px solid rgb(209, 213, 219);
-        border-radius: 0.375rem;
+    .carousel-btn {
+        position: absolute;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        background-color: rgb(197, 249, 255);
+        color: #ffffff;
+        font-size: 20px; /* Larger size for better visibility */
+        font-weight: bold;
+    }
+    
+    .carousel-btn:hover {
+        transform: scale(1.1);
+        background-color: #0baab8; 
+    }
+    
+    /* Positioning the buttons */
+    .carousel-btn.prev {
+        left: -20px; /* Left side */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .carousel-btn.next {
+        right: -20px; /* Right side */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    /* Unicode arrows directly as content */
+    .carousel-btn.prev::before {
+        content: '❮'; /* Unicode left arrow */
+    }
+    
+    .carousel-btn.next::before {
+        content: '❯'; /* Unicode right arrow */
+    }
+    
+    
+    
+
+    .carousel::-webkit-scrollbar {
+        display: none; /* Optional - hides scrollbar for cleaner look */
     }
 
-    .action-button-secondary:hover {
-        background-color: rgb(249, 250, 251);
-    }
 
-    .action-button-primary {
-        padding: 0.25rem 0.75rem;
-        font-size: 0.875rem;
-        background-color: rgb(37, 99, 235);
-        color: white;
-        border-radius: 0.375rem;
-    }
+    
 
-    .action-button-primary:hover {
-        background-color: rgb(29, 78, 216);
-    }
-
+    
     /* Pagination */
     .pagination-section {
         margin-top: 1.5rem;
@@ -292,4 +370,32 @@
         background-color: rgb(249, 250, 251);
     }
 
+    .material-section {
+        background: #FAF9F6; /* Pearl White */
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .material-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .material-card {
+        flex: 0 0 220px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        border: none; /* Explicitly remove border */
+    }
+
+    .material-title {
+        color: #2C3E50; /* Navy Blue */
+    }
 }

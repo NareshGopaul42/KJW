@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+      - ./path/to/root.crt:/etc/ssl/certs/root.crt # Ensure the SSL cert is available inside the container
+    environment:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_KEY: base64:zAcsL92IKevvAL6UoLYG2tZPc1fcnkKvq8MSYEl8p68=
+      APP_NAME: "King's Jewellery World"
+      DB_CONNECTION: pgsql
+      DB_HOST: aws-0-sa-east-1.pooler.supabase.com
+      DB_PORT: 6543
+      DB_DATABASE: postgres
+      DB_USERNAME: postgres.hqnpzwiyxehxtridriit
+      DB_PASSWORD: Ethere@l@8824
+      DB_SCHEMA: public
+      DB_SSL_MODE: verify-full
+      DB_SSL_CERT: /etc/ssl/certs/root.crt
+      SESSION_DRIVER: file
+      CACHE_DRIVER: file
+      QUEUE_CONNECTION: sync
+      MAIL_MAILER: log
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
