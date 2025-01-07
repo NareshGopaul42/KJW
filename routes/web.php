@@ -5,7 +5,6 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Inventory_Module\CustomerController;
 use App\Http\Controllers\Inventory_Module\MaterialController;
-
 use App\Http\Controllers\Material_Usage\MaterialTrackingController;
 use App\Http\Controllers\WeightRecordingController;
 use Illuminate\Support\Facades\Route;
@@ -27,32 +26,10 @@ Route::get('/home', function () {
 })->name('home');
 
 // Inventory Management Routes
-// Material History and Receipts
 Route::prefix('inventory')->group(function () {
-
-    // Material History
-    Route::get('/materials/history/all', [MaterialController::class, 'allHistory']);
-    Route::get('/materials/history', [MaterialController::class, 'allHistory'])->name('materials.history');
-    Route::get('/materials/history/filter', [MaterialController::class, 'filterHistory']);
-
-    // Edit Receipt Records - Updated grouping
-    Route::prefix('materials/receipts')->group(function () {
-        Route::get('/materials/receipts/all', [MaterialController::class, 'allReceipts']);
-        Route::get('/materials/receipts', [MaterialController::class, 'allReceipts'])->name('materials.receipts');
-        Route::get('/materials/receipts/filter', [MaterialController::class, 'filterReceipts']);  
-        Route::get('/materials/receipts/{id}/edit', [MaterialController::class, 'editReceipt'])
-            ->name('materials.receipts.edit');
-        Route::delete('/materials/receipts/{id}', [MaterialController::class, 'deleteReceipt'])
-            ->name('materials.receipts.delete');
-        Route::put('/materials/receipts/{id}/update', [MaterialController::class, 'updateReceipt'])
-            ->name('materials.receipts.update');
-    });
-});    
-// Dashboard
-    Route::get('/', [InventoryController::class, 'index'])->name('inventory.index');
-    Route::get('/inventory', [MaterialController::class, 'index'])->name('inventory.index');
+    // Dashboard
+    Route::get('/', [InventoryController::class, 'index'])->name('inventory.dashboard');
     Route::get('/materials/inventory-levels', [MaterialController::class, 'inventoryLevels']);
-
     
     // Materials Management
     Route::get('/materials/create', [InventoryController::class, 'create'])->name('materials.create');
@@ -66,30 +43,26 @@ Route::prefix('inventory')->group(function () {
     Route::get('/assignment/create', [InventoryController::class, 'createAssignment'])->name('materials.assignment.create');
     Route::post('/assignment', [InventoryController::class, 'storeAssignment'])->name('materials.assignment.store');
 
-    Route::get('/materials/internal', [CustomerController::class, 'getInternalMaterials'])
-        ->name('materials.internal');
-
     // Material History
-    Route::get('/materials/history/all', [MaterialController::class, 'allHistory']);
-    Route::get('/materials/history', [MaterialController::class, 'allHistory'])->name('materials.history');
-    Route::get('/materials/history/filter', [MaterialController::class, 'filterHistory']);
+    Route::prefix('materials/history')->group(function () {
+        Route::get('/', [MaterialController::class, 'allHistory'])->name('materials.history');
+        Route::get('/all', [MaterialController::class, 'allHistory']);
+        Route::get('/filter', [MaterialController::class, 'filterHistory']);
+    });
 
-    // Edit Receipt Records
+    // Material Receipts
     Route::prefix('materials/receipts')->group(function () {
         Route::get('/', [MaterialController::class, 'allReceipts'])->name('materials.receipts');
+        Route::get('/all', [MaterialController::class, 'allReceipts']);
         Route::get('/filter', [MaterialController::class, 'filterReceipts']);
         Route::get('/{id}/edit', [MaterialController::class, 'editReceipt'])->name('materials.receipts.edit');
         Route::put('/{id}', [MaterialController::class, 'updateReceipt'])->name('materials.receipts.update');
         Route::delete('/{id}', [MaterialController::class, 'deleteReceipt'])->name('materials.receipts.delete');
-
-
-
-
+    });
 });
 
-// Material routes
+// Materials Routes
 Route::prefix('materials')->group(function () {
-    // Static routes first
     Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
     Route::post('/', [MaterialController::class, 'store'])->name('materials.store');
     Route::get('/create', [MaterialController::class, 'create'])->name('materials.create');
@@ -97,12 +70,6 @@ Route::prefix('materials')->group(function () {
     Route::get('/internal', [MaterialController::class, 'getInternalMaterials'])->name('materials.internal');
     Route::get('/inventory-levels', [MaterialController::class, 'getInventoryLevels'])->name('materials.inventory-levels');
     Route::post('/assignment', [MaterialController::class, 'recordAssignment'])->name('materials.assignment.store');
-    Route::get('/material-usage/history', [MaterialTrackingController::class, 'index'])->name('material_usage.usage_history');
-
-
-
-    // Dynamic routes last
-    Route::get('/materials', [MaterialController::class, 'index']);
     Route::get('/{material}', [MaterialController::class, 'show'])->name('materials.show');
     Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
     Route::put('/{material}', [MaterialController::class, 'update'])->name('materials.update');
@@ -114,13 +81,14 @@ Route::prefix('employees')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employees.create');
     Route::post('/', [EmployeeController::class, 'store'])->name('employees.store');
+    Route::get('/active', [EmployeeController::class, 'getActiveEmployees'])->name('employees.active');
     Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show');
     Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
-    Route::get('/active', [EmployeeController::class, 'getActiveEmployees'])->name('employees.active');
     Route::post('/{employee}/toggle-status', [EmployeeController::class, 'toggleStatus'])->name('employees.toggle-status');
 });
 
+// Employee Progress Routes
 Route::prefix('employee-progress')->group(function () {
     Route::get('/', [EmployeeProgressController::class, 'index'])->name('employee.progress');
     Route::get('/{employee}', [EmployeeProgressController::class, 'show'])->name('employee.progress.show');
@@ -134,6 +102,7 @@ Route::prefix('employee-progress')->group(function () {
             ->name('employee.progress.materials.delete');
     });
 });
+
 // Customer Routes
 Route::prefix('customers')->group(function () {
     Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
@@ -148,7 +117,6 @@ Route::prefix('customers')->group(function () {
     Route::get('/{customer}', [CustomerController::class, 'show'])->name('customers.show');
 });
 
-
 // Material Usage Routes
 Route::prefix('material-usage')->group(function () {
     // Dashboard
@@ -160,30 +128,29 @@ Route::prefix('material-usage')->group(function () {
     Route::get('/weight-recording', [WeightRecordingController::class, 'index'])->name('material_usage.weight_recording');
     Route::post('/weight-recording/store', [WeightRecordingController::class, 'store'])->name('material_usage.weight_recording.store');
 
-
-    //usage history
-    Route::get('/material-usage/usage-history', [UsageHistoryController::class, 'index'])
-    ->name('material_usage.usage_history');
+    // Usage History
+    Route::get('/usage-history', [UsageHistoryController::class, 'index'])->name('material_usage.usage_history');
 
     // Loss Calculation
-    Route::get('/loss-calculation', [LossCalculationController::class, 'index'])
-    ->name('material_usage.loss_calculation');
-    Route::post('/loss-calculation/store', [LossCalculationController::class, 'store'])
-    ->name('material_usage.loss_calculation.store');
-    Route::post('/loss-calculation/calculate', [LossCalculationController::class, 'calculateLoss'])
-    ->name('material_usage.loss_calculation.calculate');
-    Route::post('/loss-calculation/status', [LossCalculationController::class, 'getAlertStatus'])
-    ->name('material_usage.loss_calculation.status');
+    Route::prefix('loss-calculation')->group(function () {
+        Route::get('/', [LossCalculationController::class, 'index'])->name('material_usage.loss_calculation');
+        Route::post('/store', [LossCalculationController::class, 'store'])->name('material_usage.loss_calculation.store');
+        Route::post('/calculate', [LossCalculationController::class, 'calculateLoss'])->name('material_usage.loss_calculation.calculate');
+        Route::post('/status', [LossCalculationController::class, 'getAlertStatus'])->name('material_usage.loss_calculation.status');
+    });
     
     // Material Tracking
-    Route::get('/tracking', [MaterialTrackingController::class, 'index'])->name('material_usage.tracking');
-    Route::get('/tracking/create', [MaterialTrackingController::class, 'create'])->name('material_usage.tracking.create');
-    Route::post('/tracking', [MaterialTrackingController::class, 'store'])->name('material_usage.tracking.store');
-    Route::get('/tracking/{tracking}/edit', [MaterialTrackingController::class, 'edit'])->name('material_usage.tracking.edit');
-    Route::put('/tracking/{tracking}', [MaterialTrackingController::class, 'update'])->name('material_usage.tracking.update');
-    Route::delete('/tracking/{tracking}', [MaterialTrackingController::class, 'destroy'])->name('material_usage.tracking.destroy');
-    Route::post('/tracking/{tracking}/status', [MaterialTrackingController::class, 'updateStatus'])->name('material_usage.tracking.status');
+    Route::prefix('tracking')->group(function () {
+        Route::get('/', [MaterialTrackingController::class, 'index'])->name('material_usage.tracking');
+        Route::get('/create', [MaterialTrackingController::class, 'create'])->name('material_usage.tracking.create');
+        Route::post('/', [MaterialTrackingController::class, 'store'])->name('material_usage.tracking.store');
+        Route::get('/{tracking}/edit', [MaterialTrackingController::class, 'edit'])->name('material_usage.tracking.edit');
+        Route::put('/{tracking}', [MaterialTrackingController::class, 'update'])->name('material_usage.tracking.update');
+        Route::delete('/{tracking}', [MaterialTrackingController::class, 'destroy'])->name('material_usage.tracking.destroy');
+        Route::post('/{tracking}/status', [MaterialTrackingController::class, 'updateStatus'])->name('material_usage.tracking.status');
+    });
 });
+
 // Profile Route
 Route::get('/profile', function () {
     return view('profile');
