@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/var/www/html
       - ./storage:/var/www/html/storage
-      - ./path/to/root.crt:/etc/ssl/certs/root.crt # Ensure the SSL cert is available inside the container
+      - ./certificates/root.crt:/etc/ssl/certs/root.crt
     environment:
       APP_ENV: local
       APP_DEBUG: true
