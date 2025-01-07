@@ -24,7 +24,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY . /var/www/html
 
 # Copy SSL certificate for Supabase
-COPY path/to/root.crt /etc/ssl/certs/root.crt
+COPY certificates/root.crt /etc/ssl/certs/root.crt
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
