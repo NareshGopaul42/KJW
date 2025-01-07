@@ -34,12 +34,20 @@ COPY certificates/root.crt /etc/ssl/certs/root.crt
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+# Set permissions for Laravel (Windows-friendly way)
+RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
 
-# Expose port 80
+# Enable error reporting for debugging
+RUN echo "display_errors = On" > /usr/local/etc/php/conf.d/display-errors.ini
+RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/display-errors.ini
+
+# Generate key and optimize Laravel
+RUN php artisan key:generate --force
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+
 EXPOSE 80
 
-# Start Apache server
 CMD ["apache2-foreground"]

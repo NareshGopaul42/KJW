@@ -1,4 +1,4 @@
-version: '3.8'
+vversion: '3.8'
 
 services:
   app:
@@ -8,8 +8,6 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - .:/var/www/html
-      - ./storage:/var/www/html/storage
       - ./certificates/root.crt:/etc/ssl/certs/root.crt
     environment:
       APP_ENV: local
